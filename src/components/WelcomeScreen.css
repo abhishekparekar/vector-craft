@@ -1,0 +1,303 @@
+/* Global Reset for Welcome Screen */
+.welcome-screen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: #0f0f13;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow-y: auto;
+    z-index: 10000;
+}
+
+.welcome-bg {
+    position: fixed;
+    inset: 0;
+    background:
+        radial-gradient(circle at 20% 20%, rgba(102, 126, 234, 0.1) 0%, transparent 40%),
+        radial-gradient(circle at 80% 80%, rgba(118, 75, 162, 0.1) 0%, transparent 40%);
+    pointer-events: none;
+    z-index: -1;
+}
+
+.welcome-wrapper {
+    width: 100%;
+    max-width: 900px;
+    padding: 40px 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+}
+
+/* Header Section */
+.welcome-header {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.logo-badge svg {
+    filter: drop-shadow(0 0 20px rgba(102, 126, 234, 0.4));
+    animation: rotateAndScale 4s infinite ease-in-out;
+    /* New animation name */
+}
+
+.app-title {
+    font-size: 3.5rem;
+    font-weight: 800;
+    margin: 15px 0 5px 0;
+    color: white;
+    line-height: 1.1;
+}
+
+.text-gradient {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.app-subtitle {
+    font-size: 1.2rem;
+    color: #a0a0b0;
+    font-weight: 300;
+    margin: 0;
+}
+
+/* Hero Action */
+.hero-action {
+    margin-bottom: 50px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.btn-primary-lg {
+    background: linear-gradient(90deg, #667eea, #764ba2);
+    border: none;
+    padding: 18px 40px;
+    border-radius: 50px;
+    color: white;
+    font-size: 1.2rem;
+    font-weight: 600;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    transition: transform 0.2s, box-shadow 0.2s;
+    box-shadow: 0 10px 25px rgba(118, 75, 162, 0.3);
+}
+
+.btn-primary-lg:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 15px 35px rgba(118, 75, 162, 0.5);
+}
+
+/* Content Grid */
+.welcome-main {
+    width: 100%;
+}
+
+.content-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 25px;
+    width: 100%;
+}
+
+.info-card {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 16px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+}
+
+.card-header {
+    background: rgba(255, 255, 255, 0.02);
+    padding: 20px 25px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.card-body {
+    padding: 25px;
+    font-size: 0.95rem;
+    line-height: 1.6;
+    color: #ccc;
+    flex: 1;
+}
+
+.card-body strong {
+    color: white;
+}
+
+/* Profile Specifics */
+.avatar-circle {
+    width: 48px;
+    height: 48px;
+    background: linear-gradient(135deg, #43e97b, #38f9d7);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #1a1a2e;
+}
+
+.header-text h3 {
+    margin: 0;
+    font-size: 1.1rem;
+    color: white;
+}
+
+.role-tag {
+    font-size: 0.75rem;
+    color: #43e97b;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+/* Features Specifics */
+.icon-circle {
+    background: rgba(102, 126, 234, 0.1);
+    color: #667eea;
+    padding: 8px;
+    border-radius: 8px;
+}
+
+.features-list {
+    padding: 25px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.feature-row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 0.9rem;
+    color: #bfbfbf;
+}
+
+.check-icon {
+    color: #667eea;
+}
+
+/* Footer */
+.welcome-footer {
+    margin-top: 40px;
+    color: #555;
+    font-size: 0.8rem;
+    text-align: center;
+}
+
+/* -------------------------------------------------- */
+/* ADVANCED ANIMATIONS */
+/* -------------------------------------------------- */
+
+@keyframes dropDownBounce {
+    0% {
+        opacity: 0;
+        transform: translateY(-50px);
+    }
+
+    60% {
+        opacity: 1;
+        transform: translateY(10px);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.animate-drop-1 {
+    opacity: 0;
+    animation: dropDownBounce 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+    animation-delay: 0.1s;
+}
+
+.animate-drop-2 {
+    opacity: 0;
+    animation: dropDownBounce 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+    animation-delay: 0.3s;
+}
+
+.animate-drop-3 {
+    opacity: 0;
+    animation: dropDownBounce 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+    animation-delay: 0.5s;
+}
+
+.animate-drop-4 {
+    opacity: 0;
+    animation: dropDownBounce 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+    animation-delay: 0.7s;
+}
+
+@keyframes rotateAndScale {
+
+    0%,
+    100% {
+        transform: scale(1) rotate(0deg);
+    }
+
+    50% {
+        transform: scale(1.1) rotate(5deg);
+    }
+}
+
+.mt-2 {
+    margin-top: 15px;
+}
+
+/* -------------------------------------------------- */
+/* RESPONSIVE DESIGN */
+/* -------------------------------------------------- */
+
+@media (max-width: 768px) {
+    .content-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .app-title {
+        font-size: 2.5rem;
+    }
+
+    .welcome-wrapper {
+        justify-content: flex-start;
+        padding-top: 60px;
+    }
+}
+
+@media (max-width: 480px) {
+    .app-title {
+        font-size: 2rem;
+    }
+
+    .btn-primary-lg {
+        padding: 15px 30px;
+        font-size: 1.1rem;
+        width: 100%;
+        justify-content: center;
+    }
+
+    .card-header {
+        flex-direction: column;
+        text-align: center;
+        gap: 10px;
+    }
+
+    .header-text {
+        text-align: center;
+    }
+}

@@ -1,0 +1,302 @@
+.topbar {
+    width: calc(100% - 40px);
+    height: 54px;
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 20px;
+    z-index: 100;
+    gap: 20px;
+}
+
+.topbar-left {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    flex-shrink: 0;
+}
+
+.logo-small {
+    display: flex;
+    align-items: center;
+}
+
+.project-name-input {
+    background: transparent;
+    border: 1px solid transparent;
+    color: var(--text-primary);
+    font-size: 14px;
+    font-weight: 500;
+    padding: 6px 10px;
+    border-radius: 6px;
+    width: 150px;
+    transition: all 0.2s;
+}
+
+.project-name-input:hover,
+.project-name-input:focus {
+    background: rgba(255, 255, 255, 0.05);
+    border-color: rgba(255, 255, 255, 0.1);
+}
+
+.scroll-wrapper {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    overflow-x: visible;
+    /* Default */
+}
+
+.topbar-center {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+/* Ensure controls don't shrink too much */
+.btn-group {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    background: rgba(255, 255, 255, 0.03);
+    padding: 4px;
+    border-radius: 8px;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.topbar-right {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-shrink: 0;
+}
+
+.divider {
+    width: 1px;
+    height: 24px;
+    background: rgba(255, 255, 255, 0.1);
+    margin: 0 4px;
+}
+
+.btn-icon {
+    width: 36px;
+    height: 36px;
+    border-radius: 8px;
+    border: none;
+    background: transparent;
+    color: var(--text-secondary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.btn-icon:hover {
+    background: rgba(255, 255, 255, 0.1);
+    color: var(--text-primary);
+}
+
+.btn-icon.active {
+    background: var(--primary-color);
+    color: white;
+}
+
+.success-flash {
+    animation: flashGreen 1s ease;
+}
+
+@keyframes flashGreen {
+    0% {
+        background: transparent;
+    }
+
+    50% {
+        background: #43e97b;
+        color: #000;
+    }
+
+    100% {
+        background: transparent;
+    }
+}
+
+.zoom-controls {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(0, 0, 0, 0.2);
+    padding: 2px 4px;
+    border-radius: 6px;
+}
+
+.zoom-level {
+    font-size: 12px;
+    font-weight: 600;
+    min-width: 40px;
+    text-align: center;
+    color: var(--text-secondary);
+}
+
+/* -------------------------------------------------- */
+/* DROPDOWN MENU */
+/* -------------------------------------------------- */
+.dropdown-container {
+    position: relative;
+}
+
+.dropdown-trigger {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 16px;
+    font-weight: 500;
+}
+
+.dropdown-backdrop {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 150;
+    cursor: default;
+}
+
+.dropdown-menu {
+    position: absolute;
+    top: 120%;
+    right: 0;
+    width: 220px;
+    background: rgba(30, 30, 40, 0.95);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    padding: 8px;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    z-index: 200;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+    transform-origin: top right;
+}
+
+.dropdown-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    width: 100%;
+    padding: 10px;
+    background: transparent;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    text-align: left;
+    transition: all 0.2s;
+}
+
+.dropdown-item:hover {
+    background: rgba(255, 255, 255, 0.05);
+}
+
+.badge {
+    font-size: 10px;
+    font-weight: 700;
+    padding: 4px 6px;
+    border-radius: 4px;
+    min-width: 36px;
+    text-align: center;
+    color: #111;
+}
+
+.badge.png {
+    background: #4facfe;
+}
+
+.badge.svg {
+    background: #f093fb;
+}
+
+.badge.pdf {
+    background: #ff5e62;
+}
+
+.badge.doc {
+    background: #43e97b;
+}
+
+.item-text {
+    display: flex;
+    flex-direction: column;
+}
+
+.item-text .title {
+    color: white;
+    font-size: 13px;
+    font-weight: 500;
+}
+
+.item-text .desc {
+    color: #888;
+    font-size: 10px;
+}
+
+/* -------------------------------------------------- */
+/* RESPONSIVE DESIGN */
+/* -------------------------------------------------- */
+
+@media (max-width: 1024px) {
+    .topbar {
+        width: 100%;
+        left: 0;
+        top: 0;
+        border-radius: 0;
+        border-top: none;
+        border-left: none;
+        border-right: none;
+        padding: 0 10px;
+        gap: 10px;
+    }
+
+    .scroll-wrapper {
+        justify-content: flex-start;
+        overflow-x: auto;
+        padding-bottom: 5px;
+        /* space for scrollbar if any */
+        -webkit-overflow-scrolling: touch;
+    }
+
+    .scroll-wrapper::-webkit-scrollbar {
+        height: 0;
+    }
+
+    .project-name-input {
+        width: 100px;
+    }
+
+}
+
+@media (max-width: 768px) {
+    .topbar {
+        height: 60px;
+        flex-wrap: nowrap;
+        /* Keep it single line */
+    }
+
+    .toolbar {
+        top: 60px;
+        height: calc(100vh - 60px);
+    }
+
+    .project-name-input {
+        display: none;
+        /* Hide name on mobile to save space */
+    }
+
+    .btn-icon {
+        width: 32px;
+        height: 32px;
+    }
+}

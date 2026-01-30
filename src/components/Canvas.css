@@ -1,0 +1,85 @@
+.canvas-container {
+    flex: 1;
+    position: relative;
+    background: var(--bg-secondary);
+    border-radius: var(--radius-md);
+    border: 1px solid var(--border);
+    overflow: hidden;
+    box-shadow: var(--shadow-lg);
+}
+
+.main-canvas {
+    width: 100%;
+    height: 100%;
+    cursor: crosshair;
+    background:
+        linear-gradient(90deg, rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+        linear-gradient(rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+    background-size: 20px 20px;
+}
+
+.canvas-overlay {
+    position: absolute;
+    top: var(--spacing-md);
+    left: var(--spacing-md);
+    pointer-events: none;
+    z-index: 10;
+}
+
+.canvas-info {
+    padding: var(--spacing-sm) var(--spacing-md);
+    display: flex;
+    gap: var(--spacing-lg);
+    font-size: 13px;
+    animation: fadeIn 0.5s ease-out;
+}
+
+.canvas-info span {
+    color: var(--text-secondary);
+}
+
+.canvas-info strong {
+    color: var(--text-primary);
+    font-weight: 600;
+    text-transform: capitalize;
+}
+
+/* Active Canvas State */
+.main-canvas[data-active="rectangle"],
+.main-canvas[data-active="circle"] {
+    cursor: crosshair;
+}
+
+.main-canvas[data-active="select"] {
+    cursor: default;
+}
+
+.main-canvas[data-active="hand"] {
+    cursor: grab;
+}
+
+.main-canvas[data-active="hand"]:active {
+    cursor: grabbing;
+}
+
+.main-canvas[data-active="pen"] {
+    cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><path d="M12 19l7-7 3 3-7 7-3-3z"/><path d="M18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5z"/><path d="M2 2l7.586 7.586"/></svg>') 2 14, crosshair;
+}
+
+.main-canvas[data-active="text"] {
+    cursor: text;
+}
+
+/* Responsive Design */
+@media (max-width: 968px) {
+    .canvas-container {
+        border-radius: 0;
+        border-left: none;
+        border-right: none;
+    }
+
+    .canvas-info {
+        font-size: 11px;
+        gap: var(--spacing-sm);
+    }
+}

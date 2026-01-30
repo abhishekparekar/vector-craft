@@ -1,0 +1,628 @@
+/* ==================== COMPREHENSIVE RESPONSIVE DESIGN ==================== */
+
+/* Base Enhancements for All Devices */
+html {
+    -webkit-text-size-adjust: 100%;
+    -ms-text-size-adjust: 100%;
+}
+
+html,
+body,
+#root {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    position: fixed;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+    touch-action: pan-x pan-y;
+    -webkit-tap-highlight-color: transparent;
+    overscroll-behavior: none;
+}
+
+/* App Container Fixes */
+.app {
+    width: 100%;
+    height: 100vh;
+    height: 100dvh;
+    /* Dynamic viewport height for mobile */
+    position: relative;
+}
+
+.workspace {
+    min-height: 0;
+    /* Critical for flex children */
+    position: relative;
+}
+
+/* Button Responsive Enhancements */
+.btn {
+    white-space: nowrap;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+}
+
+.btn-icon {
+    min-width: 40px;
+    min-height: 40px;
+    flex-shrink: 0;
+}
+
+/* Input Responsive */
+input[type="text"],
+input[type="number"],
+select {
+    width: 100%;
+    max-width: 100%;
+}
+
+input[type="color"] {
+    min-width: 50px;
+    flex-shrink: 0;
+}
+
+/* Right Panels Responsive */
+.right-panels {
+    min-width: 280px;
+    max-width: 280px;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+/* ========== LARGE DESKTOP (1920px+) ========== */
+@media (min-width: 1920px) {
+    :root {
+        --spacing-md: 20px;
+        --spacing-lg: 28px;
+        --spacing-xl: 40px;
+    }
+
+    .right-panels {
+        min-width: 320px;
+        max-width: 320px;
+    }
+
+    .btn {
+        font-size: 15px;
+        padding: 12px 24px;
+    }
+
+    .btn-icon {
+        min-width: 48px;
+        min-height: 48px;
+        width: 48px;
+        height: 48px;
+    }
+}
+
+/* ========== DESKTOP (1200px - 1919px) ========== */
+@media (min-width: 1200px) and (max-width: 1919px) {
+    /* Default styles apply */
+}
+
+/* ========== LAPTOP / SMALL DESKTOP (1024px - 1199px) ========== */
+@media (max-width: 1199px) {
+    :root {
+        --spacing-md: 14px;
+        --spacing-lg: 20px;
+    }
+
+    .right-panels {
+        min-width: 260px;
+        max-width: 260px;
+    }
+
+    .workspace {
+        gap: 12px;
+        padding: 12px;
+    }
+}
+
+/* ========== TABLET LANDSCAPE (900px - 1023px) ========== */
+@media (max-width: 1023px) {
+    :root {
+        --spacing-md: 12px;
+        --spacing-lg: 16px;
+    }
+
+    .right-panels {
+        min-width: 240px;
+        max-width: 240px;
+    }
+
+    .workspace {
+        gap: 10px;
+        padding: 10px;
+    }
+
+    .btn {
+        font-size: 13px;
+        padding: 9px 18px;
+    }
+}
+
+/* ========== TABLET PORTRAIT (768px - 899px) ========== */
+@media (max-width: 899px) {
+    :root {
+        --spacing-md: 10px;
+        --spacing-lg: 14px;
+    }
+
+    .workspace {
+        flex-direction: column;
+        gap: 8px;
+        padding: 8px;
+    }
+
+    .right-panels {
+        width: 100%;
+        min-width: unset;
+        max-width: unset;
+        flex-direction: row;
+        overflow-x: auto;
+        overflow-y: hidden;
+        max-height: 45vh;
+    }
+
+    .right-panels>* {
+        flex: 1;
+        min-width: 250px;
+        max-height: 100%;
+    }
+
+    .btn {
+        font-size: 13px;
+        padding: 8px 16px;
+    }
+
+    .btn-icon {
+        min-width: 38px;
+        min-height: 38px;
+        width: 38px;
+        height: 38px;
+    }
+}
+
+/* ========== MOBILE LANDSCAPE / SMALL TABLET (600px - 767px) ========== */
+@media (max-width: 767px) {
+    :root {
+        --spacing-sm: 6px;
+        --spacing-md: 8px;
+        --spacing-lg: 12px;
+        --radius-sm: 5px;
+        --radius-md: 10px;
+    }
+
+    .workspace {
+        padding: 6px;
+        gap: 6px;
+    }
+
+    .btn {
+        font-size: 12px;
+        padding: 7px 14px;
+    }
+
+    .btn-icon {
+        min-width: 36px;
+        min-height: 36px;
+        width: 36px;
+        height: 36px;
+    }
+
+    input[type="text"],
+    input[type="number"],
+    select {
+        font-size: 13px;
+        padding: 7px 10px;
+    }
+
+    .right-panels {
+        flex-direction: column;
+        max-height: 40vh;
+        overflow-y: auto;
+        overflow-x: hidden;
+    }
+
+    .right-panels>* {
+        min-width: unset;
+        width: 100%;
+    }
+}
+
+/* ========== MOBILE PORTRAIT (480px - 599px) ========== */
+@media (max-width: 599px) {
+    :root {
+        --spacing-xs: 3px;
+        --spacing-sm: 5px;
+        --spacing-md: 6px;
+        --spacing-lg: 10px;
+        --radius-sm: 4px;
+        --radius-md: 8px;
+    }
+
+    .workspace {
+        padding: 4px;
+        gap: 4px;
+    }
+
+    .btn {
+        font-size: 11px;
+        padding: 6px 12px;
+    }
+
+    .btn-icon {
+        min-width: 34px;
+        min-height: 34px;
+        width: 34px;
+        height: 34px;
+    }
+
+    input[type="text"],
+    input[type="number"],
+    select {
+        font-size: 12px;
+        padding: 6px 8px;
+    }
+
+    input[type="color"] {
+        min-width: 42px;
+        height: 32px;
+    }
+
+    .right-panels {
+        max-height: 38vh;
+    }
+
+    /* Hide tooltips on small mobile */
+    .tooltip:hover::after {
+        display: none;
+    }
+}
+
+/* ========== SMALL MOBILE (374px - 479px) ========== */
+@media (max-width: 479px) {
+    :root {
+        --spacing-xs: 2px;
+        --spacing-sm: 4px;
+        --spacing-md: 5px;
+        --spacing-lg: 8px;
+    }
+
+    .workspace {
+        padding: 3px;
+        gap: 3px;
+    }
+
+    .btn {
+        font-size: 10px;
+        padding: 5px 10px;
+    }
+
+    .btn span:not(.icon) {
+        display: none;
+    }
+
+    .btn-icon {
+        min-width: 32px;
+        min-height: 32px;
+        width: 32px;
+        height: 32px;
+    }
+
+    .right-panels {
+        max-height: 35vh;
+    }
+}
+
+/* ========== EXTRA SMALL MOBILE (up to 373px) ========== */
+@media (max-width: 373px) {
+    .workspace {
+        padding: 2px;
+        gap: 2px;
+    }
+
+    .btn {
+        padding: 4px 8px;
+        min-width: 32px;
+    }
+
+    input[type="text"],
+    input[type="number"],
+    select {
+        font-size: 11px;
+        padding: 5px 6px;
+    }
+
+    .right-panels {
+        max-height: 32vh;
+    }
+}
+
+/* ========== LANDSCAPE ORIENTATION (Mobile Devices) ========== */
+@media (max-width: 899px) and (orientation: landscape) {
+    .workspace {
+        flex-direction: row;
+    }
+
+    .right-panels {
+        flex-direction: column;
+        max-height: none;
+        max-width: 45vw;
+        min-width: 240px;
+        overflow-y: auto;
+        overflow-x: hidden;
+    }
+
+    .right-panels>* {
+        width: 100%;
+        min-width: unset;
+    }
+}
+
+/* ========== TOUCH DEVICE OPTIMIZATIONS ========== */
+@media (hover: none) and (pointer: coarse) {
+
+    /* Larger touch targets for mobile */
+    .btn-icon,
+    .btn {
+        min-height: 44px;
+        /* iOS recommended touch target */
+        min-width: 44px;
+    }
+
+    /* Remove hover effects on touch devices */
+    .btn:hover::before {
+        display: none;
+    }
+
+    /* Active state feedback for touch */
+    .btn:active {
+        transform: scale(0.95);
+        opacity: 0.9;
+    }
+
+    .btn-icon:active {
+        transform: scale(0.9);
+    }
+
+    /* Better range slider for touch */
+    input[type="range"] {
+        height: 44px;
+        padding: 12px 0;
+    }
+
+    input[type="range"]::-webkit-slider-thumb {
+        width: 24px;
+        height: 24px;
+    }
+
+    input[type="range"]::-moz-range-thumb {
+        width: 24px;
+        height: 24px;
+    }
+
+    /* Better color picker for touch */
+    input[type="color"] {
+        min-width: 50px;
+        min-height: 44px;
+    }
+}
+
+/* ========== HIGH DPI DISPLAYS (Retina) ========== */
+@media (-webkit-min-device-pixel-ratio: 2),
+(min-resolution: 192dpi),
+(min-resolution: 2dppx) {
+    body {
+        -webkit-font-smoothing: subpixel-antialiased;
+    }
+
+    .glass,
+    .glass-strong {
+        border-width: 0.5px;
+    }
+}
+
+/* ========== PRINT STYLES ========== */
+@media print {
+    .app {
+        background: white !important;
+    }
+
+    .glass,
+    .glass-strong {
+        background: white !important;
+        border: 1px solid #ccc !important;
+        box-shadow: none !important;
+        backdrop-filter: none !important;
+    }
+
+    .workspace {
+        overflow: visible !important;
+    }
+
+    /* Hide UI elements when printing */
+    .topbar,
+    .toolbar,
+    .right-panels {
+        display: none !important;
+    }
+}
+
+/* ========== ACCESSIBILITY: REDUCED MOTION ========== */
+@media (prefers-reduced-motion: reduce) {
+
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
+}
+
+/* ========== ACCESSIBILITY: HIGH CONTRAST ========== */
+@media (prefers-contrast: high) {
+    :root {
+        --border: rgba(255, 255, 255, 0.3);
+        --text-secondary: #d0d0e8;
+    }
+
+    .btn {
+        border: 2px solid currentColor;
+    }
+
+    .glass,
+    .glass-strong {
+        border-width: 2px;
+    }
+}
+
+/* ========== DARK MODE SUPPORT (if system preference) ========== */
+@media (prefers-color-scheme: dark) {
+    /* App is already dark by default - no changes needed */
+}
+
+/* ========== LIGHT MODE SUPPORT (if explicitly requested) ========== */
+@media (prefers-color-scheme: light) {
+    /* Future: Add light mode support here if needed */
+}
+
+/* ========== SAFE AREA INSETS (for devices with notches) ========== */
+@supports (padding: max(0px)) {
+    .app {
+        padding-left: max(0px, env(safe-area-inset-left));
+        padding-right: max(0px, env(safe-area-inset-right));
+    }
+
+    .workspace {
+        padding-bottom: max(var(--spacing-md), env(safe-area-inset-bottom));
+    }
+}
+
+/* ========== FOLDABLE DEVICES ========== */
+@media (horizontal-viewport-segments: 2) {
+    .workspace {
+        flex-direction: row;
+    }
+}
+
+/* ========== COLOR GAMUT SUPPORT ========== */
+@media (color-gamut: p3) {
+    :root {
+        --primary: linear-gradient(135deg, color(display-p3 0.4 0.5 0.92) 0%, color(display-p3 0.46 0.3 0.64) 100%);
+    }
+}
+
+/* ========================================================================
+   DEVICE-SPECIFIC FIXES
+   ======================================================================== */
+
+/* iPhone X, XS, 11 Pro, 12 mini */
+@media only screen and (device-width: 375px) and (device-height: 812px) and (-webkit-device-pixel-ratio: 3) {
+    .app {
+        padding-bottom: env(safe-area-inset-bottom, 34px);
+    }
+}
+
+/* iPhone XR, 11, 12, 12 Pro */
+@media only screen and (device-width: 390px) and (device-height: 844px) and (-webkit-device-pixel-ratio: 3) {
+    .app {
+        padding-bottom: env(safe-area-inset-bottom, 34px);
+    }
+}
+
+/* iPad Pro 11" */
+@media only screen and (min-device-width: 834px) and (max-device-width: 834px) {
+    .right-panels {
+        min-width: 300px;
+        max-width: 300px;
+    }
+}
+
+/* iPad Pro 12.9" */
+@media only screen and (min-device-width: 1024px) and (max-device-width: 1024px) {
+    .right-panels {
+        min-width: 320px;
+        max-width: 320px;
+    }
+}
+
+/* ========================================================================
+   UTILITY CLASSES FOR RESPONSIVE BEHAVIOR
+   ======================================================================== */
+
+/* Hide on mobile */
+.hide-mobile {
+    display: initial;
+}
+
+@media (max-width: 767px) {
+    .hide-mobile {
+        display: none !important;
+    }
+}
+
+/* Show only on mobile */
+.show-mobile {
+    display: none;
+}
+
+@media (max-width: 767px) {
+    .show-mobile {
+        display: initial !important;
+    }
+}
+
+/* Hide on tablet */
+.hide-tablet {
+    display: initial;
+}
+
+@media (min-width: 768px) and (max-width: 1023px) {
+    .hide-tablet {
+        display: none !important;
+    }
+}
+
+/* Show only on tablet */
+.show-tablet {
+    display: none;
+}
+
+@media (min-width: 768px) and (max-width: 1023px) {
+    .show-tablet {
+        display: initial !important;
+    }
+}
+
+/* Hide on desktop */
+.hide-desktop {
+    display: initial;
+}
+
+@media (min-width: 1024px) {
+    .hide-desktop {
+        display: none !important;
+    }
+}
+
+/* Show only on desktop */
+.show-desktop {
+    display: none;
+}
+
+@media (min-width: 1024px) {
+    .show-desktop {
+        display: initial !important;
+    }
+}
