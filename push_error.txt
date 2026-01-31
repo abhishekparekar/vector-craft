@@ -1,0 +1,35 @@
+﻿git : To https://github.com/
+abhishekparekar/VectorCraft.
+git
+At line:1 char:1
++ git push -u origin main 
+2>&1 | Out-File -FilePath 
+push_error.txt -Enc ...
++ 
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          
+    : NotSpecified: (To ht  
+  tps://gith...VectorCraf   
+ t.git:String) [], Remot    
+eException
+    + FullyQualifiedErrorId 
+    : NativeCommandError
+ 
+ ! [rejected]        main 
+-> main (non-fast-forward)
+error: failed to push some 
+refs to 'https://github.com/
+abhishekparekar/VectorCraft.
+git'
+hint: Updates were rejected 
+because the tip of your 
+current branch is behind
+hint: its remote 
+counterpart. If you want to 
+integrate the remote 
+changes,
+hint: use 'git pull' before 
+pushing again.
+hint: See the 'Note about 
+fast-forwards' in 'git push 
+--help' for details.
