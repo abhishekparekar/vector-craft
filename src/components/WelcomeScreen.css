@@ -3,14 +3,14 @@
     position: fixed;
     top: 0;
     left: 0;
-    width: 100vw;
-    height: 100vh;
+    width: 100%;
+    height: 100%;
     background: #0f0f13;
-    display: flex;
-    justify-content: center;
-    align-items: center;
     overflow-y: auto;
+    overflow-x: hidden;
     z-index: 10000;
+    -webkit-overflow-scrolling: touch;
+    overscroll-behavior: contain;
 }
 
 .welcome-bg {
@@ -26,12 +26,12 @@
 .welcome-wrapper {
     width: 100%;
     max-width: 900px;
-    padding: 40px 20px;
+    margin: 0 auto;
+    padding: max(40px, env(safe-area-inset-top)) max(20px, env(safe-area-inset-right)) max(40px, env(safe-area-inset-bottom)) max(20px, env(safe-area-inset-left));
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
-    min-height: 100vh;
+    justify-content: flex-start;
 }
 
 /* Header Section */
@@ -40,14 +40,17 @@
     margin-bottom: 40px;
 }
 
+.logo-badge {
+    margin-bottom: 20px;
+}
+
 .logo-badge svg {
     filter: drop-shadow(0 0 20px rgba(102, 126, 234, 0.4));
     animation: rotateAndScale 4s infinite ease-in-out;
-    /* New animation name */
 }
 
 .app-title {
-    font-size: 3.5rem;
+    font-size: clamp(2rem, 8vw, 3.5rem);
     font-weight: 800;
     margin: 15px 0 5px 0;
     color: white;
@@ -58,13 +61,15 @@
     background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
+    background-clip: text;
 }
 
 .app-subtitle {
-    font-size: 1.2rem;
+    font-size: clamp(0.9rem, 3vw, 1.2rem);
     color: #a0a0b0;
     font-weight: 300;
     margin: 0;
+    padding: 0 10px;
 }
 
 /* Hero Action */
@@ -73,6 +78,7 @@
     width: 100%;
     display: flex;
     justify-content: center;
+    padding: 0 10px;
 }
 
 .btn-primary-lg {
@@ -81,19 +87,27 @@
     padding: 18px 40px;
     border-radius: 50px;
     color: white;
-    font-size: 1.2rem;
+    font-size: clamp(1rem, 3vw, 1.2rem);
     font-weight: 600;
     cursor: pointer;
     display: flex;
     align-items: center;
+    justify-content: center;
     gap: 12px;
-    transition: transform 0.2s, box-shadow 0.2s;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     box-shadow: 0 10px 25px rgba(118, 75, 162, 0.3);
+    min-height: 56px;
+    max-width: 100%;
+    white-space: nowrap;
 }
 
 .btn-primary-lg:hover {
     transform: translateY(-2px);
     box-shadow: 0 15px 35px rgba(118, 75, 162, 0.5);
+}
+
+.btn-primary-lg:active {
+    transform: translateY(0);
 }
 
 /* Content Grid */
@@ -103,7 +117,7 @@
 
 .content-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr));
     gap: 25px;
     width: 100%;
 }
@@ -115,6 +129,12 @@
     overflow: hidden;
     display: flex;
     flex-direction: column;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.info-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(102, 126, 234, 0.2);
 }
 
 .card-header {
@@ -128,7 +148,7 @@
 
 .card-body {
     padding: 25px;
-    font-size: 0.95rem;
+    font-size: clamp(0.85rem, 2.5vw, 0.95rem);
     line-height: 1.6;
     color: #ccc;
     flex: 1;
@@ -142,26 +162,37 @@
 .avatar-circle {
     width: 48px;
     height: 48px;
+    min-width: 48px;
+    min-height: 48px;
     background: linear-gradient(135deg, #43e97b, #38f9d7);
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
     color: #1a1a2e;
+    flex-shrink: 0;
+}
+
+.header-text {
+    flex: 1;
+    min-width: 0;
 }
 
 .header-text h3 {
     margin: 0;
-    font-size: 1.1rem;
+    font-size: clamp(0.95rem, 2.5vw, 1.1rem);
     color: white;
+    word-wrap: break-word;
 }
 
 .role-tag {
-    font-size: 0.75rem;
+    font-size: clamp(0.65rem, 2vw, 0.75rem);
     color: #43e97b;
     font-weight: 600;
     text-transform: uppercase;
     letter-spacing: 0.5px;
+    display: inline-block;
+    margin-top: 4px;
 }
 
 /* Features Specifics */
@@ -170,6 +201,7 @@
     color: #667eea;
     padding: 8px;
     border-radius: 8px;
+    flex-shrink: 0;
 }
 
 .features-list {
@@ -183,20 +215,22 @@
     display: flex;
     align-items: center;
     gap: 12px;
-    font-size: 0.9rem;
+    font-size: clamp(0.8rem, 2.5vw, 0.9rem);
     color: #bfbfbf;
 }
 
 .check-icon {
     color: #667eea;
+    flex-shrink: 0;
 }
 
 /* Footer */
 .welcome-footer {
     margin-top: 40px;
     color: #555;
-    font-size: 0.8rem;
+    font-size: clamp(0.7rem, 2vw, 0.8rem);
     text-align: center;
+    padding: 0 20px;
 }
 
 /* -------------------------------------------------- */
@@ -261,43 +295,345 @@
 }
 
 /* -------------------------------------------------- */
-/* RESPONSIVE DESIGN */
+/* RESPONSIVE DESIGN - COMPREHENSIVE */
 /* -------------------------------------------------- */
 
-@media (max-width: 768px) {
-    .content-grid {
-        grid-template-columns: 1fr;
+/* Large Desktop (1920px+) */
+@media (min-width: 1920px) {
+    .welcome-wrapper {
+        max-width: 1200px;
+        padding: 60px 40px;
     }
 
-    .app-title {
-        font-size: 2.5rem;
+    .content-grid {
+        gap: 35px;
+    }
+}
+
+/* Desktop (1200px - 1919px) - Default styles apply */
+
+/* Laptop (1024px - 1199px) */
+@media (max-width: 1199px) {
+    .welcome-wrapper {
+        max-width: 800px;
+        padding: 35px 20px;
+    }
+
+    .content-grid {
+        gap: 20px;
+    }
+}
+
+/* Tablet Landscape (900px - 1023px) */
+@media (max-width: 1023px) {
+    .welcome-wrapper {
+        padding: 30px 20px;
+    }
+
+    .hero-action {
+        margin-bottom: 40px;
+    }
+}
+
+/* Tablet Portrait (768px - 899px) */
+@media (max-width: 899px) {
+    .content-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
     }
 
     .welcome-wrapper {
         justify-content: flex-start;
-        padding-top: 60px;
+        padding: 30px 20px;
+    }
+
+    .welcome-header {
+        margin-bottom: 30px;
+    }
+
+    .hero-action {
+        margin-bottom: 35px;
     }
 }
 
-@media (max-width: 480px) {
-    .app-title {
-        font-size: 2rem;
+/* Mobile Landscape / Small Tablet (600px - 767px) */
+@media (max-width: 767px) {
+    .welcome-wrapper {
+        padding: 30px 16px;
     }
 
-    .btn-primary-lg {
-        padding: 15px 30px;
-        font-size: 1.1rem;
-        width: 100%;
-        justify-content: center;
+    .logo-badge svg {
+        width: 40px;
+        height: 40px;
     }
 
     .card-header {
-        flex-direction: column;
-        text-align: center;
+        padding: 16px 20px;
+    }
+
+    .card-body {
+        padding: 20px;
+    }
+
+    .features-list {
+        padding: 20px;
+        gap: 12px;
+    }
+
+    .btn-primary-lg {
+        padding: 16px 32px;
+    }
+}
+
+/* Mobile Portrait (480px - 599px) */
+@media (max-width: 599px) {
+    .welcome-wrapper {
+        padding: 20px 16px;
+    }
+
+    .welcome-header {
+        margin-bottom: 20px;
+    }
+
+    .hero-action {
+        margin-bottom: 25px;
+    }
+
+    .btn-primary-lg {
+        padding: 14px 28px;
+        width: 100%;
+        max-width: 320px;
+    }
+
+    .content-grid {
+        gap: 16px;
+    }
+
+    .card-header {
+        padding: 14px 16px;
+        gap: 12px;
+    }
+
+    .card-body {
+        padding: 16px;
+    }
+
+    .features-list {
+        padding: 16px;
         gap: 10px;
     }
 
-    .header-text {
-        text-align: center;
+    .welcome-footer {
+        margin-top: 25px;
+        padding-bottom: 20px;
+    }
+}
+
+/* Small Mobile (374px - 479px) */
+@media (max-width: 479px) {
+    .welcome-wrapper {
+        padding: 16px 12px;
+    }
+
+    .logo-badge svg {
+        width: 35px;
+        height: 35px;
+    }
+
+    .welcome-header {
+        margin-bottom: 16px;
+    }
+
+    .hero-action {
+        margin-bottom: 20px;
+    }
+
+    .btn-primary-lg {
+        padding: 12px 24px;
+        font-size: 0.95rem;
+        gap: 8px;
+    }
+
+    .btn-primary-lg svg {
+        width: 20px;
+        height: 20px;
+    }
+
+    .card-header {
+        padding: 12px 14px;
+        flex-direction: row;
+        align-items: center;
+    }
+
+    .avatar-circle {
+        width: 40px;
+        height: 40px;
+        min-width: 40px;
+        min-height: 40px;
+    }
+
+    .avatar-circle svg {
+        width: 24px;
+        height: 24px;
+    }
+
+    .card-body {
+        padding: 14px;
+    }
+
+    .features-list {
+        padding: 14px;
+    }
+
+    .feature-row {
+        gap: 10px;
+    }
+
+    .check-icon {
+        width: 16px;
+        height: 16px;
+    }
+
+    .welcome-footer {
+        margin-top: 20px;
+        padding-bottom: 16px;
+    }
+}
+
+/* Extra Small Mobile (320px - 373px) */
+@media (max-width: 373px) {
+    .welcome-wrapper {
+        padding: 12px 10px;
+    }
+
+    .logo-badge svg {
+        width: 30px;
+        height: 30px;
+    }
+
+    .app-title {
+        font-size: 1.75rem;
+    }
+
+    .app-subtitle {
+        font-size: 0.85rem;
+    }
+
+    .btn-primary-lg {
+        padding: 10px 20px;
+        font-size: 0.9rem;
+        min-height: 48px;
+    }
+
+    .card-header {
+        padding: 10px 12px;
+    }
+
+    .card-body {
+        padding: 12px;
+        font-size: 0.8rem;
+    }
+
+    .features-list {
+        padding: 12px;
+        gap: 8px;
+    }
+
+    .feature-row {
+        font-size: 0.75rem;
+    }
+
+    .welcome-footer {
+        margin-top: 16px;
+        padding-bottom: 12px;
+        font-size: 0.65rem;
+    }
+}
+
+/* Landscape Orientation (Mobile) */
+@media (max-height: 500px) and (orientation: landscape) {
+    .welcome-wrapper {
+        padding: 16px 20px;
+    }
+
+    .welcome-header {
+        margin-bottom: 16px;
+    }
+
+    .logo-badge svg {
+        width: 35px;
+        height: 35px;
+    }
+
+    .hero-action {
+        margin-bottom: 16px;
+    }
+
+    .content-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 16px;
+    }
+
+    .welcome-footer {
+        margin-top: 16px;
+        padding-bottom: 16px;
+    }
+}
+
+/* Very Short Screens - Ensure Content is Always Scrollable */
+@media (max-height: 700px) {
+    .welcome-screen {
+        align-items: flex-start;
+    }
+
+    .welcome-wrapper {
+        padding-top: 20px;
+        padding-bottom: 20px;
+    }
+}
+
+/* Touch Device Optimizations */
+@media (hover: none) and (pointer: coarse) {
+    .btn-primary-lg {
+        min-height: 48px;
+        padding: 14px 32px;
+    }
+
+    .info-card:hover {
+        transform: none;
+    }
+
+    .info-card:active {
+        transform: scale(0.98);
+    }
+}
+
+/* Reduced Motion */
+@media (prefers-reduced-motion: reduce) {
+    .logo-badge svg {
+        animation: none;
+    }
+
+    .animate-drop-1,
+    .animate-drop-2,
+    .animate-drop-3,
+    .animate-drop-4 {
+        animation: none;
+        opacity: 1;
+    }
+
+    .btn-primary-lg:hover {
+        transform: none;
+    }
+}
+
+/* High Contrast Mode */
+@media (prefers-contrast: high) {
+    .info-card {
+        border: 2px solid rgba(255, 255, 255, 0.2);
+    }
+
+    .btn-primary-lg {
+        border: 2px solid white;
     }
 }
