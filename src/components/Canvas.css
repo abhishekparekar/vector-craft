@@ -6,6 +6,12 @@
     border: 1px solid var(--border);
     overflow: hidden;
     box-shadow: var(--shadow-lg);
+    animation: scaleIn 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    transition: all 0.3s ease;
+}
+
+.canvas-container:hover {
+    box-shadow: var(--shadow-lg), 0 0 30px rgba(102, 126, 234, 0.1);
 }
 
 .main-canvas {
@@ -16,6 +22,10 @@
         linear-gradient(90deg, rgba(255, 255, 255, 0.02) 1px, transparent 1px),
         linear-gradient(rgba(255, 255, 255, 0.02) 1px, transparent 1px);
     background-size: 20px 20px;
+    touch-action: none;
+    /* Better touch handling */
+    -webkit-user-select: none;
+    user-select: none;
 }
 
 .canvas-overlay {
@@ -31,17 +41,24 @@
     display: flex;
     gap: var(--spacing-lg);
     font-size: 13px;
-    animation: fadeIn 0.5s ease-out;
+    animation: slideInDown 0.5s ease-out;
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
 }
 
 .canvas-info span {
     color: var(--text-secondary);
+    transition: color 0.3s ease;
 }
 
 .canvas-info strong {
     color: var(--text-primary);
     font-weight: 600;
     text-transform: capitalize;
+    background: var(--primary);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
 }
 
 /* Active Canvas State */
@@ -73,13 +90,46 @@
 /* Responsive Design */
 @media (max-width: 968px) {
     .canvas-container {
-        border-radius: 0;
-        border-left: none;
-        border-right: none;
+        border-radius: var(--radius-sm);
     }
 
     .canvas-info {
         font-size: 11px;
         gap: var(--spacing-sm);
+        padding: var(--spacing-xs) var(--spacing-sm);
+    }
+}
+
+@media (max-width: 768px) {
+    .canvas-overlay {
+        top: var(--spacing-sm);
+        left: var(--spacing-sm);
+    }
+
+    .canvas-info {
+        font-size: 10px;
+        flex-direction: column;
+        gap: 4px;
+    }
+}
+
+@media (max-width: 480px) {
+    .canvas-container {
+        border-radius: 0;
+    }
+
+    .canvas-info span {
+        font-size: 9px;
+    }
+}
+
+/* Touch device specific */
+@media (hover: none) and (pointer: coarse) {
+    .main-canvas {
+        cursor: default;
+    }
+
+    .canvas-info {
+        padding: 8px 12px;
     }
 }

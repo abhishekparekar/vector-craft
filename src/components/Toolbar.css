@@ -1,18 +1,17 @@
 .toolbar {
     width: 80px;
-    /* Increased from 60px to accommodate text */
-    height: calc(100vh - 84px);
-    position: fixed;
-    left: 20px;
-    top: 74px;
-    /* adjusted for topbar */
+    min-width: 80px;
+    max-width: 80px;
+    /* Fixed width for desktop */
     display: flex;
     flex-direction: column;
     align-items: center;
     padding: 15px 5px;
     gap: 12px;
-    z-index: 100;
     overflow-y: auto;
+    overflow-x: hidden;
+    flex-shrink: 0;
+    /* Prevent toolbar from shrinking */
 }
 
 .tool-btn {
@@ -30,28 +29,56 @@
     align-items: center;
     justify-content: center;
     cursor: pointer;
-    transition: all 0.2s ease;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     gap: 4px;
     /* Space between icon and text */
+    position: relative;
+    overflow: hidden;
+}
+
+.tool-btn::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    border-radius: 50%;
+    background: rgba(102, 126, 234, 0.2);
+    transform: translate(-50%, -50%);
+    transition: width 0.4s, height 0.4s;
+}
+
+.tool-btn:hover::before {
+    width: 100px;
+    height: 100px;
 }
 
 .tool-btn:hover {
     background: rgba(255, 255, 255, 0.1);
-    transform: translateX(3px);
+    transform: translateX(3px) scale(1.05);
     color: var(--text-primary);
+    border-color: rgba(102, 126, 234, 0.4);
 }
 
 .tool-btn.active {
-    background: var(--primary-color);
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
     color: white;
-    border-color: var(--primary-hover);
-    box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
+    border-color: transparent;
+    box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4), 0 0 20px rgba(102, 126, 234, 0.2);
+    transform: translateX(3px);
+}
+
+.tool-btn.active:hover {
+    box-shadow: 0 6px 16px rgba(102, 126, 234, 0.6), 0 0 30px rgba(102, 126, 234, 0.3);
 }
 
 .tool-label {
     font-size: 10px;
     font-weight: 500;
     text-transform: capitalize;
+    position: relative;
+    z-index: 1;
 }
 
 .divider-h {
@@ -74,15 +101,99 @@
     border-radius: 50%;
     border: 2px solid rgba(255, 255, 255, 0.2);
     cursor: pointer;
-    transition: transform 0.2s;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+}
+
+.swatch::after {
+    content: '';
+    position: absolute;
+    inset: -4px;
+    border-radius: 50%;
+    border: 2px solid transparent;
+    transition: border-color 0.3s ease;
 }
 
 .swatch:hover {
     transform: scale(1.2);
     border-color: white;
+    box-shadow: 0 0 10px currentColor;
+}
+
+.swatch:hover::after {
+    border-color: rgba(255, 255, 255, 0.3);
 }
 
 /* Hide scrollbar */
 .toolbar::-webkit-scrollbar {
     width: 0px;
+}
+
+/* Responsive Design */
+@media (max-width: 968px) {
+    .toolbar {
+        width: 100%;
+        min-width: 100%;
+        max-width: 100%;
+        height: auto;
+        flex-direction: row;
+        overflow-x: auto;
+        overflow-y: hidden;
+        padding: 10px;
+        gap: 8px;
+    }
+
+    .tool-btn {
+        width: 50px;
+        height: 50px;
+        flex-shrink: 0;
+    }
+
+    .color-swatches {
+        flex-direction: row;
+        margin-top: 0;
+    }
+
+    .divider-h {
+        width: 1px;
+        height: 40px;
+        margin: 0 5px;
+    }
+}
+
+@media (max-width: 768px) {
+    .toolbar {
+        padding: 8px;
+        gap: 6px;
+    }
+
+    .tool-btn {
+        width: 44px;
+        height: 44px;
+    }
+
+    .tool-label {
+        font-size: 9px;
+    }
+
+    .swatch {
+        width: 20px;
+        height: 20px;
+    }
+}
+
+@media (max-width: 480px) {
+    .tool-btn {
+        width: 40px;
+        height: 40px;
+    }
+
+    .tool-label {
+        display: none;
+    }
+
+    .swatch {
+        width: 18px;
+        height: 18px;
+    }
 }

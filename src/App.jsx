@@ -58,7 +58,7 @@ function App() {
                     setZoom={setZoom}
                 />
 
-                <div className="right-panels">
+                <div className="right-panels slide-in-right">
                     <PropertiesPanel
                         selectedObject={selectedObject}
                         canvasRef={canvasRef}
